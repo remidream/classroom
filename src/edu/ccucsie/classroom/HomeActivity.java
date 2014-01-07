@@ -35,7 +35,7 @@ public class HomeActivity extends BaseActivity {
 	private TextView mTextView;
 	private ProgressDialog mProgressDialog;
 
-	private final String uriAPI = "http://www.cs.ccu.edu.tw/~lht100u/classroom/app/using.php";
+	private final String uriAPI = "http://www.cs.ccu.edu.tw/~lht100u/classroom/app/classroom.php";
 	private final int REFRESH_DATA = 1;
 
 	@Override
@@ -66,10 +66,10 @@ public class HomeActivity extends BaseActivity {
 
 			return;
 		}
-		
+
 		mProgressDialog = ProgressDialog.show(this, "資料讀取中", "請稍後...");
 
-		Thread thread = new Thread(new SendPostRunnable(""));
+		Thread thread = new Thread(new SendPostRunnable());
 		thread.start();
 	}
 
@@ -80,13 +80,12 @@ public class HomeActivity extends BaseActivity {
 			switch (msg.what) {
 			// 顯示網路上抓取的資料
 			case REFRESH_DATA:
-
 				String result = null;
 				if (msg.obj instanceof String)
 					result = (String) msg.obj;
 
 				if (result != null) {
-					mResult += result;
+					mResult = result;
 				}
 				break;
 			}
@@ -94,28 +93,20 @@ public class HomeActivity extends BaseActivity {
 			if (mResult.equals("")) {
 				mResult += "（無）";
 			}
-			Log.d("HomeActivity mResult", "/" + mResult + "/");
 			mTextView.setText(mResult);
 			mProgressDialog.dismiss();
 		}
 	};
 
 	class SendPostRunnable implements Runnable {
-		String prompt;
-
-		// 建構子，設定要傳的字串
-		public SendPostRunnable(String prompt) {
-			this.prompt = prompt;
-		}
-
 		@Override
 		public void run() {
-			String result = sendPostDataToInternet(prompt);
+			String result = sendPostDataToInternet();
 			mHandler.obtainMessage(REFRESH_DATA, result).sendToTarget();
 		}
 	}
 
-	private String sendPostDataToInternet(String request) {
+	private String sendPostDataToInternet() {
 		String result = null;
 
 		/* 建立HTTP Post連線 */
@@ -125,7 +116,7 @@ public class HomeActivity extends BaseActivity {
 		 */
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("", request));
+		params.add(new BasicNameValuePair("ccupms_acc", ((MyApplication) getApplication()).getAccount()));
 
 		try {
 			/* 發出HTTP request */
@@ -139,9 +130,10 @@ public class HomeActivity extends BaseActivity {
 				InputStream inputStream = httpEntity.getContent();
 
 				BufferedReader bufReader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"), 8);
-				StringBuilder builder = new StringBuilder();
-				String line;
+				StringBuilder builder = new StringBuilder("");
+				String line = null;
 				while ((line = bufReader.readLine()) != null) {
+					Log.e("HomeActivity", "//" + line + "//");
 					builder.append(line + "\n");
 				}
 				inputStream.close();
@@ -154,5 +146,4 @@ public class HomeActivity extends BaseActivity {
 		}
 		return null;
 	}
-
 }
