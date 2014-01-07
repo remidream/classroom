@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.ccucsie.classroom"
+    android:installLocation="auto"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name="MyApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Holo" >
+        <activity
+            android:name="LoginActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="nosensor" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="HomeActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".search.SearchActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".history.HistoryFragmentActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".search.ChooseTimeActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".search.SubmitFormActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity
+            android:name=".search.ReasonActivity"
+            android:screenOrientation="nosensor" >
+        </activity>
+        <activity android:name=".base.BaseActivity" >
+        </activity>
+        <activity android:name=".base.BaseFragmentActivity" >
+        </activity>
+    </application>
+
+</manifest>

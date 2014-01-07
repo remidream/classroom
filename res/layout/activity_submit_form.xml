@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <!-- 使用者姓名 -->
+
+    <EditText
+        android:id="@+id/EditName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:inputType="textPersonName" />
+
+    <!-- 手機號碼 -->
+
+    <EditText
+        android:id="@+id/EditPhone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/phone"
+        android:inputType="phone" />
+
+    <!-- Email -->
+
+    <EditText
+        android:id="@+id/EditEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <!-- 事由 -->
+
+    <Button
+        android:id="@+id/reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reason" />
+
+    <TextView
+        android:id="@+id/reasonTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
+
+    <!-- 教室 ID -->
+
+    <TextView
+        android:id="@+id/ClassroomID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/classroomID" />
+
+    <!-- 借用日期 -->
+
+    <TextView
+        android:id="@+id/SelectDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/date_picked" />
+
+    <!-- 借用時段 -->
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/SelectTime"
+                android:layout_width="286dp"
+                android:layout_height="wrap_content"
+                android:text="@string/time_picked" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <!-- 完成 -->
+
+        <Button
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/done" />
+
+        <!-- 重填 -->
+
+        <Button
+            android:id="@+id/rewrite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reset" />
+    </LinearLayout>
+
+</LinearLayout>
